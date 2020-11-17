@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <input type="text">
+  <p></p>
+  <script>
+    const oP = document.querySelector('p')
+    const oInput = document.querySelector('input')
+    let obj = {
+      // a: 'Ni'
+    }
+    Object.defineProperty(obj, 'b', {
+      // get() {
+      //   return this.a
+      // },
+      set(newValue) {
+        // this.a = newValue
+        oInput.value = newValue
+        oP.innerHTML = newValue
+      }
+    })
+
+    oInput.oninput = function (e) {
+      obj.b = e.target.value
+    }
+  </script>
+</body>
+</html>
