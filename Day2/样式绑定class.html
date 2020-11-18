@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+   <style>
+      .box {
+         border: 1px solid red;
+         width: 100px;
+         height: 100px;
+      }
+
+      .box2 {
+         background-color: green;
+      }
+
+      .test {
+         color: cyan;
+      }
+
+      .base {
+         font-size: 28px;
+      }
+   </style>
+</head>
+
+<body>
+   <!-- 对象 -->
+   <div id="app">
+      <div :class="{box:isFlag,box2:isFlag1}">样式测试1</div>
+      <button @click="handle">切换样式1</button>
+      <button @click="handle1">切换样式2</button>
+   </div>
+   <!-- 数组 -->
+   <div id="app2">
+      <div :class="[boxClass,box2Class]">样式测试2</div>
+      <button @click="handle">切换样式1</button>
+      <button @click="handle1">切换样式2</button>
+   </div>
+   <!-- 
+      . 对象绑定和数组绑定可以结合使用
+      . class绑定的值可以简化操作
+    -->
+   <div id="app3">
+      <div :class="[boxClass,box2Class,{test:isTest}]">样式测试3</div>
+      <button @click="handle">切换样式1</button>
+      <button @click="handle1">切换样式2</button>
+   </div>
+   <div id="app4">
+      <div :class="arrClasses">样式测试4</div>
+      <div :class="objClasses">样式测试4</div>
+      <button @click="handle">切换样式1</button>
+      <button @click="handle1">切换样式2</button>
+   </div>
+   <!-- . 默认的class的处理？ 
+          之前的class会进行保留,不会将其覆盖
+   -->
+   <div id="app5">
+      <div class="base" :class="objClasses">样式测试5</div>
+   </div>
+   <script>
+      let vm = new Vue({
+         el: '#app',
+         data: {
+            isFlag: true,
+            isFlag1: true
+         },
+         methods: {
+            handle() {
+               this.isFlag = !this.isFlag
+            },
+            handle1() {
+               this.isFlag1 = !this.isFlag1
+            }
+         }
+      })
+      let vm2 = new Vue({
+         el: '#app2',
+         data: {
+            boxClass: 'box',
+            box2Class: 'box2'
+         },
+         methods: {
+            handle() {
+               this.boxClass = '';
+            },
+            handle1() {
+               this.box2Class = '';
+            }
+         }
+      })
+      let vm3 = new Vue({
+         el: '#app3',
+         data: {
+            boxClass: 'box',
+            box2Class: 'box2',
+            isTest: true
+         },
+         methods: {
+            handle() {
+               this.boxClass = '';
+            },
+            handle1() {
+               this.box2Class = '';
+            }
+         }
+      })
+      let vm4 = new Vue({
+         el: '#app4',
+         data: {
+            isTest: true,
+            // 这时如果需要进行更改这是对arrClasses数组中的元素进行更改.
+            arrClasses: ['box', 'box2'],
+            objClasses: {
+               box: true,
+               box2: true
+            }
+         },
+         methods: {
+            handle() {
+               this.objClasses.box = !this.objClasses.box;
+            },
+            handle1() {
+               this.objClasses.box2 = !this.objClasses.box2;
+            }
+         }
+      })
+      let vm5 = new Vue({
+         el: '#app5',
+         data: {
+            objClasses: {
+               box: true,
+               box2: true
+            }
+         },
+         methods: {}
+      })
+   </script>
+</body>
+
+</html>
