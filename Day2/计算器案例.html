@@ -12,30 +12,30 @@
     <div>
       <span>数值A:</span>
       <span>
-        <input type="text" v-model='a'>
+        <input type="text" v-model="a">
       </span>
     </div>
     <div>
       <span>数值B:</span>
       <span>
-        <input type="text" v-model='b'>
+        <input type="text" v-model="b">
       </span>
     </div>
     <div>
-      <button v-on:click='handle'>计算</button>
+      <button v-on:click="handle">计算</button>
     </div>
     <div>
       <span>计算结果:</span>
-      <span v-text='result'></span>
+      <span v-text="result"></span>
     </div>
   </div>
   <script>
     new Vue({
-      el: '#app',
+      el: "#app",
       data: {
-        a: '',
-        b: '',
-        result: ''
+        a: "",
+        b: "",
+        result: ""
       },
       methods: {
         handle: function () {

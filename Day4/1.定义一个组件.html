@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>vue html demo</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <button-app></button-app>
+  </div>
+  <script>
+    Vue.component("buttonApp", {
+      data: function () {
+        return {
+          msg: 233
+        }
+      },
+      template: `
+        <div style="border:1px solid #000 ; padding:10px ; width:200px">
+        <button @click="upmsg">按钮</button>
+        <div>{{msg}}</div>
+        </div>`,
+      methods: {
+        upmsg: function () {
+          this.msg = this.msg + 5
+        }
+      }
+    })
+    new Vue({
+      el: '#app',
+      data: {
+
+      },
+      methods: {
+
+      },
+      components: {
+        'button': {
+          data: function () {
+
+          },
+
+        }
+      }
+    })
+  </script>
+</body>
+</html>
