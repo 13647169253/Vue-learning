@@ -1,0 +1,10 @@
+Webpack 是 前端项目构建工具
+        提供了友好的模块化支持,代码压缩混淆,处理js兼容问题,性能优化等功能
+
+
+#1 初始化 webpack 
+        创建一个 webpack.config.js 的配置文件用来配置 Webpack
+
+#2 在package.json 中 scripts 中配置运行脚本  "dev": "webpack"
+        使用 npm run dev 即可启动 webpack 进行打包
+        打包完成后会自动生成 dist文件夹 main.js 文件及是打包好的文件
