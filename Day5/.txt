@@ -1,1 +1,29 @@
- promise 的用法
+前后端交互
+  调用接口的方式
+    原生Ajax
+    基于 jQuery 的Ajax
+    fetch 方法
+    axios 方法    
+
+传统的URL 格式: Schema://localhost:port/path?query#fragment
+               https://192.168.85.58:3000/getdata?id=3#7
+              Schema 通信协议     http https
+              localhost 域名或者IP地址  baidu.com  192.168.1.1
+              prot 端口号   :80 可以省略   
+              path 路径 , 
+              query 查询参数
+              fragment 哈希锚点,用于定位页面相对应的位子
+
+
+Restful 形式的URL
+ 。 http 请求方式
+      GET 查询  POST 添加  DELETE 删除  PUT 修改
+  相关的URL地址; 域名对应的请求方式不同 ;  PUT 和 POST 需要传参
+      https://www.hello.com/books       GET请求
+      https://www.hello.com/books       POST请求
+      https://www.hello.com/books/123   PUT请求  修改123的数据
+      https://www.hello.com/books/123   DELETE请求  删除123  与传统URL 传参相比没有使用？ 
+
+Promise 
+  es6,新出的,用于解决回调地狱.
+

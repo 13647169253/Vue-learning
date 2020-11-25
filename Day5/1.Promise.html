@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>vue html demo</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+  </div>
+  <script>
+    /* 
+    ES6 引入的新的语法;用来处理异步编程 (ajax、定时器、事件函数)
+
+    let str = '----'
+    $.ajax({
+      url:'http://localhost:3000/data',
+      success: function(data){
+        str = data;
+      }
+    })
+    console.log(str)  // 输出结果为 '----' ; 拿不到异步处理的结果
+----------------------------------------------------
+   前端调用接口时 获取的顺序并不依赖与代码写的顺序
+   如果异步的结果确实存在依赖的关系那就需要进行嵌套 ; 代码的可维护性和可读性会降低; 照成的回调地狱
+    $.ajax({
+      url: 'http://localhost:3000/data',
+      success: function (data) {
+        console.log(data)
+        $.ajax({
+          url: 'http://localhost:3000/data',
+          success: function (data) {
+            console.log(data);
+            $.ajax({
+              url: 'http://localhost:3000/data',
+              success: function (data) {
+                console.log(data);
+              }
+            })
+          }
+        })
+      }
+    })
+
+    Promise解决回调地狱;提供了一些简洁的API
+    作为一个构造函数进行使用;先实例化 Promose实例化对象,构造函数中传递一个函数,该函数中用于处理异步的任务
+    函数内有两个参数; resolve (解决) 代表成功后的调用
+                     reject (拒绝) 失败后的调用
+    使用 .then 获取处理的结果
+      .then ( resolve => {return resolve() 获取成功的结果} , reject => {return reject() 获取失败的结果})
+    */
+    const P = new Promise((resolve, reject) => {
+      setTimeout(() => {
+        if (Math.random() > 0.5) {
+          resolve('ok')
+        } else {
+          reject('Not ok')
+        }
+      }, 200)
+    })
+    // 将回调函数使用 .then 将其重构,代码不在产生多重嵌套
+    P.then(data => {
+      console.log(data);
+    }, err => {
+      console.log(err);
+    })
+  </script>
+</body>
+</html>

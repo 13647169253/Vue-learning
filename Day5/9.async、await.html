@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>vue html demo</title>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script> -->
+  </head>
+  <body>
+    <div id="app"></div>
+    <script>
+      //      axios.defaults.baseURL = "http://localhost:3000";
+      //      axios.get("adata").then(function (ret) {
+      //        console.log(ret.data);
+      //      });
+      //
+      //      /*
+      //        async\await 是ES7 新的语法,可以方便的操作异步函数
+      //         async 关键字用于函数上(它的返回值是一个  Promise实例对象)
+      //         await 关键字用于 async标注的函数内部(await可以获取异步函数的执行结果)
+      //            await 后面可以跟一个Promise实例对象用于获取它的结果
+      //      */
+      //      async function queryData(id) {
+      //        const ret = await axios.get("/data");
+      //        return ret.data;
+      //      }
+      //      /* 它的返回值依然是一个Promise实例对象 ; 返回时可以通过.then的方式得到上面 async 函数的返回值*/
+      //      queryData().then(data => {
+      //        console.log(data);
+      //      });
+      async function aa() {
+        let bb = await new Promise(function (resolve, reject) {
+          setInterval(function () {
+            resolve("Nihao");
+          }, 1000);
+        });
+        return bb;
+      }
+      aa().then(data => {
+        console.log(data);
+      });
+      /* async 函数的返回值是一个新的Promise对象;如果在最后需要返回一个值,在调用async函数的时候使用 .then 获取到async函数的返回值 */
+    </script>
+  </body>
+</html>

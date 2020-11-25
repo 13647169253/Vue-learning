@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>vue html demo</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+    <script src="./axios.js"></script>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script>
+      /*  
+    响应结果的主要属性
+      data       ; 实际响应过来的数据集合
+      headers    ; 响应头信息
+      status     ; 响应的状态码
+      statusText ; 响应状态的信息
+    */
+      // axios.get('http://localhost:3000/axios-json').then(ret => {
+      //   console.log(ret);
+      //   console.log(ret.data.uname);
+      // })
+
+      /* 
+    发送请求时的全局配置
+    */
+      axios.defaults.timeout = 3000; // 超时时间
+      axios.defaults.baseURL = "http://localhost:3000/"; // 默认地址
+      axios.defaults.headers["mytoken"] = "abcdefg"; // 设置的请求头; 值是自定义的.
+
+      axios.get("axios-json").then(ret => {
+        console.log(ret);
+        console.log(ret.data.uname);
+      });
+    </script>
+  </body>
+</html>

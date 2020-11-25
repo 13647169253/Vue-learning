@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>vue html demo</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+</head>
+<body>
+  <div id="app">
+  </div>
+  <script>
+    /*  
+    用于替代 xhl ; 基于Promise 实现 ; 返回的是一个Promise对象,需要使用.then获取到对应的结果
+    */
+    fetch('http://localhost:3000/fdata').then(function (data) {
+      // 后端返回的是一个字符串类型的数据需要使用 text 方法进行处理;处理之后的数据还是一个Promise的;
+      // .text() 返回的是一个Promise对象,用于获取后后台返回的对象
+      return data.text()
+    }).then((data) => {
+      //通过下一次的, .then拿到结果;
+      console.log(data);
+    })
+
+    /* 
+      fetch 的配置信息 {}
+        method 有四种请求方法   get post delete put
+        body HTTP的请求参数
+        headers HTTP的请求头信息,默认为一个对象 {}
+    */
+    // 使用?id=xx 的方式进行传递查询参数时需要后端修改 req.query.id 的方式获取到
+    fetch('http://localhost:3000/books?id=123', {
+      method: 'get' //默认;添加或者不添加都行
+    }).then((data) => {
+      return data.text()
+    }).then((data) => {
+      console.log(data);
+    })
+    // 在Restful形式的URL中 使用 req.params.id 方式获取到 / 后的值; 接口路由为 为 /books/:id
+    fetch('http://localhost:3000/books/456', {
+      method: 'delete' //后台接口记得修改为 App.delete
+    }).then((data) => {
+      return data.text()
+    }).then((data) => {
+      console.log(data);
+    })
+    fetch('http://localhost:3000/books', {
+      method: 'post',
+      // body: 'uname=lisi&pwd=123',
+      body: JSON.stringify({
+        uname: 'ls',
+        pwd: '123'
+      }),
+      headers: {
+        // 'Content-Type': "applicaton/x-www-form-urlencoded" // 数据读取方式  uname=lisi&pwd=123
+        'Content-Type': "applicaton/json" // 获取json格式的数据
+      }
+    }).then((data) => {
+      // return data.text()
+      return data.json()
+    }).then((data) => {
+      console.log(data);
+    })
+    //在URL 中需要携带ID
+    fetch('http://localhost:3000/books/123', {
+      method: 'PUT',
+      body: JSON.stringify({
+        uname: 'ls',
+        pwd: '123'
+      }),
+      headers: {
+        'Content-Type': "applicaton/json"
+      }
+    }).then((data) => {
+      return data.text()
+    }).then((data) => {
+      console.log(data);
+    })
+
+    // /* 
+    // Fetch 的 响应数据格式   
+    //   .text()
+    //   .json() 等效于 JSON.parse(responseText)
+    // */
+
+    // fetch('http://localhost:3000/json')
+    // .then((data) => {
+    //   return data.json()
+    // }).then((data) => {
+    //   console.log(data);
+    // })
+  </script>
+</body>
+</html>

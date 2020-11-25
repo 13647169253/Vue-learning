@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>vue html demo</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+    <script src="axios.js"></script>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script>
+      /*
+        拦截器 : 在请求发出之前设置的一些信息
+      */
+      axios.interceptors.request.use(
+        function () {
+          return config;
+        },
+        function (err) {
+          console.log(err);
+        }
+      );
+      /* 请求拦截器 */
+      axios.interceptors.request.use(
+        function (config) {
+          console.log(config.url);
+          config.headers.myToken = "Yerry";
+          return config;
+        },
+        function (err) {
+          console.log(err);
+        }
+      );
+      /* 响应拦截器 */
+      axios.interceptors.response.use(
+        function (res) {
+          console.log(res);
+          return res.data;
+        },
+        function (err) {
+          console.log(err);
+        }
+      );
+      axios.get("http://localhost:3000/adata").then(data => {
+        console.log(data);
+      });
+
+      // new Vue({
+      //   el: "#app",
+      //   data: {},
+      //   methods: {},
+      // });
+    </script>
+  </body>
+</html>

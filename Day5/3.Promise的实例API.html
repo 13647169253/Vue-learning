@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>vue html demo</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+</head>
+<body>
+
+  <div id="app">
+  </div>
+  <script>
+    /* 
+    .then()   获取成功的信息
+    .eatch()  获取失败的信息
+    .finally() 无论是否成功都会执行这个方法(不是一个正式的标准方法)
+    */
+    rq('data1')
+      .then(data => {
+        return rq(data)
+      })
+      .then(data => {
+        return rq(data)
+      })
+      .then(data => {
+        console.log(data);
+      })
+      .catch(err => {
+        // 在进行链式操作时,只要前面有一个出错,就会走这里的 catch
+        console.log("出错了", err, err.statusText);
+      })
+      .finally(() => {
+        console.log("finished");
+      })
+    /* queryData("data")
+      .then(function (data) {
+        console.log(data);
+      })
+      .catch(function (data) {
+        console.log(data);
+      })
+      .finally(function () {
+        console.log('finished');
+      }) */
+    /* queryData("data")
+      .then(function (data) {
+        console.log(data);
+      },function (data) {
+        console.log(data);
+      })
+      .finally(function () {
+        console.log('finished');
+      }) */
+    // 以上两种写法 等效
+  </script>
+</body>
+</html>

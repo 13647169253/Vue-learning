@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>vue html demo</title>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script> -->
+    <script src="axios.js"></script>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script>
+      /* 
+       await 可以直接获取到异步的值.不再需要使用 Promise 的链式 .then 操作
+      */
+      axios.defaults.baseURL = `http://localhost:3000`;
+      async function queryData(id) {
+        const info = await axios.get("/async1");
+        const info2 = await axios.get("/async2?info=" + info.data);
+        return info2.data;
+      }
+      queryData().then(data => {
+        console.log(data);
+      });
+    </script>
+  </body>
+</html>
