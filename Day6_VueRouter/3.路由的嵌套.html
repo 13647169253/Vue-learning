@@ -53,11 +53,11 @@
         routes: [
           { path: "/", redirect: "/user" },
           { path: "/user", component: User },
-          // children 数组表示子路由规则
           {
             path: "/register",
             component: Register,
             redirect: "/register/tab1",
+            // children 数组表示子路由规则
             children: [
               // { path: "/register", redirect: "/register/tab1" }, // 垃圾代码
               { path: "tab1", component: Tab1 },
